@@ -4,7 +4,7 @@ class Chain {
   constructor(){
     this._chains = { };
   }
-
+  getNames(){ return Object.keys(this._chains); }
   addChain(name, dataFile){
     let chain = new MarkovChain();
     chain.trainJSON(dataFile);

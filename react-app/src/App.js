@@ -5,12 +5,15 @@ import ContentWindow from "./components/ContentWindow.js";
 import WarningsView from "./components/WarningsView.js"
 import TextEntryBox from "./components/TextEntryBox.js";
 import OldMessagesView from "./components/OldMessagesView.js";
+import DataStore from "./lib/data.js";
 
 import Request from "./lib/Request.js";
 
 let url = "http://localhost:8000";
-let messageType = "";
+let messageType = "Weird Al";
 let request = new Request(url);
+
+let dataStore = new DataStore();
 
 class App extends Component {
   handleTextChange = value => {
@@ -19,6 +22,7 @@ class App extends Component {
   handleMessageClick = value => {
     request.get("/generate/" + messageType).then((data)=>{
       this._olderMessages.addMessage(data.message);
+      dataStore.add(messageType, data.message);
     });
   }
   onMessageClick = data => {
@@ -26,13 +30,22 @@ class App extends Component {
   }
   changeGenerator = data => {
     messageType = data;
+
     this._olderMessages.reset();
+
+    let olderMessages = dataStore.get(messageType);
+    if (!olderMessages) return;
+    for (let message of olderMessages){
+      this._olderMessages.addMessage(message, message);
+    }
   }
   loadGenerators() {
     request.get("/generator-names").then((data)=>{
       for (let name of data){
         this._generatorNames.addMessage(name, name);
       }
+
+      messageType = data[0];
     })
   }
 

@@ -5,8 +5,9 @@ const app = express();
 const port = 8000;
 
 let chains = new Chains();
-chains.addChain('weird-al', './data/weird-al.json');
-chains.addChain('alice-cooper', './data/alice-cooper.json');
+chains.addChain('Weird Al', './data/weird-al.json');
+chains.addChain('Alice Cooper', './data/alice-cooper.json');
+chains.addChain('Three Days Grace', './data/three-days-grace.json');
 
 function sendJSON(res, data){
   res.setHeader('Content-Type', 'application/json');
@@ -20,7 +21,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/generator-names', (req,res)=>{
-  sendJSON(res, ['weird-al', 'alice-cooper', 'dio']);
+  sendJSON(res, chains.getNames());
 })
 
 app.get('/generate/:name', (req,res)=>{
