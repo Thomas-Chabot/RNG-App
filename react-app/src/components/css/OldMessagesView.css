@@ -1,0 +1,15 @@
+#OldMessagesView{
+  flex-grow: 5;
+
+  overflow-y: auto;
+  border: 1px solid rgb(169,169,169);
+}
+
+.messages-container{
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}

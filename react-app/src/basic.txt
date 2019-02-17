@@ -1,0 +1,10 @@
+<container1 flex-vertical>
+  <container2 flex-horizontal>
+    <ai-data flex-grid>
+    <old-messages flex-vertical>
+  </container2>
+  <container3 flex-vertical>
+    <text-entry-box>
+    <send-button>
+  </container3>
+</container1>

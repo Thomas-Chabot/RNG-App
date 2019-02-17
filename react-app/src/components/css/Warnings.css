@@ -1,0 +1,9 @@
+.warnings-box{
+  flex-grow: 2;
+  height: 100px;
+}
+
+.warning-box{
+  flex-grow: 1;
+  height: 20px;
+}
